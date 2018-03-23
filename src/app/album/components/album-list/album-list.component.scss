@@ -1,0 +1,46 @@
+mat-grid-tile {
+    padding: 20px;
+  }
+
+  .example-card {
+    max-width: 300px;
+    border-radius: 8px;
+  }
+
+//   .example-card:hover {
+//     opacity: 1;
+//     -webkit-transform: scale(1.1);
+//     -moz-transform: scale(1.1);
+//     -ms-transform: scale(1.1);
+//     transform: scale(1.1);
+//     z-index: 1000;
+// }
+
+img{
+    position: relative;
+    cursor: pointer;
+}
+
+.example-card:hover {
+    top: -2px;
+  }
+
+
+.mat-o-icon{
+    position: absolute;
+    top: 120px;
+    left: 10px;
+    color: white;
+}
+
+button.mat-menu-item{
+    font-size: 12px;
+
+    mat-icon{
+        font-size: 24px;
+    }
+}
+
+mat-icon{
+    cursor: pointer;
+}

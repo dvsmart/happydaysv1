@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  authenticated: boolean;
+
+constructor() {
+  if(localStorage.getItem('user') != null){
+    this.authenticated = true;
+  }else{
+    this.authenticated = false;
+  }
+}
+
 }

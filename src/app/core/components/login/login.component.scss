@@ -1,0 +1,41 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+
+  $breakpoint-tablet: 768px;
+  @media (min-width: $breakpoint-tablet) {
+    .example-container{
+        width: 400px;
+    }
+  }
+
+  $breakpoint-mobile: 414px;
+  @media (min-width:  $breakpoint-mobile) {
+    .example-container{
+      width: 350px;
+    }
+  }
+
+  .card-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card-content {
+    background-color: #fff;
+    color: #fff;
+    height: 100px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 4px;
+  }

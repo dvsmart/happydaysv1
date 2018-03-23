@@ -1,0 +1,28 @@
+<!-- <mat-card>
+    <mat-card-header>
+        <div class="col-md-12">
+            <h4>Photos <button class="float-sm-right" mat-raised-button >Upload Photo</button></h4>
+        </div>
+    </mat-card-header>
+    <div>
+            <mat-grid-list cols="5" rowHeight="450px;" gutterSize="16px">
+                <mat-grid-tile *ngFor="let photo of photos">
+                        <mat-card class="example-card mat-elevation-z4">
+                        <mat-card-title>
+                            <span>{{photo.name}}</span>
+                        </mat-card-title>
+                        <img mat-card-image [src]="photo.secureUrl" [title]="photo.name" [alt]="photo.name" class="img-thumbnail">
+                        </mat-card>
+                </mat-grid-tile>
+            </mat-grid-list>
+    </div>
+</mat-card> -->
+
+<owl-carousel [options]="{items: 3, dots: false, navigation: false}" [items]="images" [carouselClasses]="['owl-theme', 'row', 'sliding']">
+<div class="item" *ngFor="let photo of images;let i = index">
+    <div class="thumbnail-image" [ngStyle]=""></div>
+</div>
+</owl-carousel>
+
+
+

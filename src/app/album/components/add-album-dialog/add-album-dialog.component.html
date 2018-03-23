@@ -1,0 +1,14 @@
+<form>
+    <div mat-dialog-content>
+      <mat-form-field>
+        <input matInput [(ngModel)]="data.name" placeholder="Album Name" name="data.name" maxlength="20" type="text" required>
+        <div class="form-control-feedback" *ngIf="data.name.invalid && data.name.dirty"> 
+        Album Name is invalid
+      </div>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">No Thanks</button>
+      <button mat-button [mat-dialog-close]="data.name" type="submit" cdkFocusInitial>Ok</button>
+    </div>
+  </form>
