@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,8 @@ export class AppComponent {
   title = 'app';
   authenticated: boolean;
 
-constructor() {
-  if(localStorage.getItem('user') != null){
+constructor(private storage : CookieService) {
+  if(storage.get('user') != null && storage.get('user') != "undefined" && storage.get('user') !== ""){
     this.authenticated = true;
   }else{
     this.authenticated = false;

@@ -11,7 +11,10 @@ import { AppHeaderComponent } from './_layout/app-header/app-header.component';
 import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 import { HomeComponent } from './home/home.component';
 import { PhotoGalleryModule } from './photo-gallery/photo-gallery.module';
-import { OwlModule } from 'ngx-owl-carousel';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MyHttpInterceptor } from './httpInterceptor';
+import { CookieService } from 'ngx-cookie-service';
+
 
 
 @NgModule({
@@ -29,9 +32,12 @@ import { OwlModule } from 'ngx-owl-carousel';
     CoreModule,
     AlbumModule,
     PhotoGalleryModule,
-    OwlModule
   ],
-  providers: [],
+  providers: [{ 
+    provide: HTTP_INTERCEPTORS, 
+    useClass: MyHttpInterceptor, 
+    multi: true 
+}, CookieService  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

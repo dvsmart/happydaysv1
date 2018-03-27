@@ -4,13 +4,13 @@ import { SharedModule } from '../shared/shared.module';
 import { PhotoService } from './services/photo.service';
 import { PhotoGalleryComponent } from './photo-gallery.component';
 
-import { OwlModule,OwlCarousel } from 'ngx-owl-carousel';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
-    OwlModule
+    NgxGalleryModule
   ],
   providers:[PhotoService],
   declarations: [PhotoGalleryComponent]

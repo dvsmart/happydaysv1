@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../core/services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,11 @@ import { AuthService } from '../../core/services/auth.service';
 })
 export class AppHeaderComponent implements OnInit {
 currentUser:string;
-  constructor(private authservice: AuthService) {
-    var user = JSON.parse(localStorage.getItem('user'));
-    this.currentUser = user.userName
+  constructor(private authservice: AuthService,private storage: CookieService) {
+    if(storage.get('user') != "undefined" && storage.get('user') !== ""){
+      this.currentUser = storage.get('user')
+    }
+    
    }
 
   ngOnInit() {

@@ -11,13 +11,13 @@ import { PhotoGalleryComponent } from './photo-gallery/photo-gallery.component';
 const appRoutes: Routes = [
   { 
       path: '',
-      component: AppLayoutComponent, 
+      component: AppLayoutComponent,
+      canActivate:[AuthguardService], 
       children: [
-        { path: '', component: HomeComponent },
+        { path: '', component: HomeComponent,pathMatch:'full' },
         { path: 'Albums', component: AlbumComponent },
         { path:'photos/:id',component:PhotoGalleryComponent },
       ],
-      canActivate: [AuthguardService],
   },
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: SignupComponent },

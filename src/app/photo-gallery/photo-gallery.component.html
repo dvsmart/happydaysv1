@@ -17,12 +17,14 @@
             </mat-grid-list>
     </div>
 </mat-card> -->
-
-<owl-carousel [options]="{items: 3, dots: false, navigation: false}" [items]="images" [carouselClasses]="['owl-theme', 'row', 'sliding']">
-<div class="item" *ngFor="let photo of images;let i = index">
-    <div class="thumbnail-image" [ngStyle]=""></div>
-</div>
-</owl-carousel>
+<mat-card>
+    <mat-card-header>
+            <app-upload [albumId]="albumId" (notify)="receiveMessage($event)"></app-upload>
+    </mat-card-header>
+    <mat-card-content>
+            <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+    </mat-card-content>
+</mat-card>
 
 
 

@@ -3,10 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Photo } from '../models/photo.model';
 import {map} from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
+import { apiurl } from '../../api-config';
 
 @Injectable()
 export class PhotoService {
-  url = 'http://localhost:63159/api/Image/';
+  url = apiurl + 'Image/';
   constructor(private http: HttpClient) { }
 
 
@@ -15,10 +16,12 @@ export class PhotoService {
   }
 
     postFile(photoModel: any): Observable<boolean> {
-      const endpoint = 'http://localhost:63159/api/imageupload';
+      const endpoint = apiurl + 'imageupload';
       return this.http
         .post(endpoint, photoModel)
         .map(() => { return true; });
   }
+
+  
 
 }

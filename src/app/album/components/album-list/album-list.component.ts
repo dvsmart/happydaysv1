@@ -84,7 +84,6 @@ export class AlbumListComponent implements OnInit {
   }
 
   onSelect(album: Album){
-    debugger;
     this.router.navigateByUrl('/photos/'+ album.id);
   }
 
