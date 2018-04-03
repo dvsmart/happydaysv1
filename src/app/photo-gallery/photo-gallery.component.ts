@@ -32,36 +32,31 @@ export class PhotoGalleryComponent implements OnInit {
     this.galleryOptions = [
       {
           width: '100%',
-          height: '700px',
+          height: '600px',
           thumbnailsColumns: 4,
-          imageAnimation: NgxGalleryAnimation.Slide,
+          imageAnimation: NgxGalleryAnimation.Zoom,
           imageDescription: true,
           imageSwipe :true,
           imageInfinityMove:true,
           imageArrows:true,
           imageArrowsAutoHide :true,
           previewAnimation:true,
-          lazyLoading:true
-      },
-      // max-width 800
-      {
-          breakpoint: 800,
-          width: '100%',
-          height: '600px',
-          imagePercent: 80,
-          thumbnailsPercent: 20,
-          thumbnailsMargin: 20,
-          thumbnailMargin: 20,
-          preview :true
+          lazyLoading:true,
+          image:true,
+          thumbnailsArrowsAutoHide:true,
+          previewFullscreen:true,
+          thumbnailMargin:2,
+          thumbnailsMargin:2,
+          layout:"thumbnails-top"
       },
       // max-width 400
       {
-          breakpoint: 400,
-          preview: false
+          breakpoint: 420,
+          preview: true,
+          width:'100%',
+          imageSize:'100%'
       }
   ];
-
-  this.galleryImages = [];
   }
 
   receiveMessage($event) {
@@ -71,17 +66,17 @@ export class PhotoGalleryComponent implements OnInit {
   }
 
   loadImages(id:number){
+      this.galleryImages = [];
       this.photoAlbum.getPhotos(id).subscribe(x=>{ this.photos = x;console.log(x); this.getGalleryImages(x)});
   }
 
   getGalleryImages(photos){
     photos.forEach(element => {
-      console.log(element.secureUrl);
       var imgObj = {
           small: element.secureUrl,
           medium:element.secureUrl,
           big:element.secureUrl,
-          description :element.name
+          description :element.name + ' - Added by ' + element.addedBy + ' on ' + element.addedOn
         }
       this.galleryImages.push(imgObj);
     });

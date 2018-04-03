@@ -17,6 +17,7 @@ export class UploadComponent implements OnInit {
 
   form: FormGroup;
   loading: boolean = false;
+  enableUploadButton: boolean;
 
   @ViewChild('fileInput') fileInput: ElementRef;
 
@@ -24,6 +25,7 @@ export class UploadComponent implements OnInit {
 
   constructor(private fb: FormBuilder,private photoService: PhotoService,public snackBar: MatSnackBar) {
     this.createForm();
+    this.enableUploadButton = true;
   }
 
   ngOnInit(): void {
@@ -38,7 +40,6 @@ export class UploadComponent implements OnInit {
 
   createForm() {
     this.form = this.fb.group({
-      name: new FormControl(''),
       content: null
     });
   }
@@ -46,10 +47,11 @@ export class UploadComponent implements OnInit {
   private prepareSave(extraData?:object): any {
     let input = new FormData();
     input.append('albumId',this.albumId);
-    input.append('name',this.form.get('name').value);
     this.files = this.form.get('content').value;
-    for (let index = 0; index < this.files.length; index++) {
-      input.append('file', this.files[index]);
+    if(this.files.length > 0){
+      for (let index = 0; index < this.files.length; index++) {
+        input.append('file', this.files[index]);
+      }
     }
     return input;
   }
@@ -57,6 +59,7 @@ export class UploadComponent implements OnInit {
   
   
   onFileChange(event) {
+    this.enableUploadButton = false;
     if(event.target.files.length > 0) {
         this.form.get('content').setValue(event.target.files);
       }
@@ -64,22 +67,22 @@ export class UploadComponent implements OnInit {
 
 
       onSubmit() {
-        debugger;
         const formModel = this.prepareSave(this.form.value);
         this.loading = true;
         this.photoService.postFile(formModel).subscribe(data => {
+            this.loading = false;
+            this.clear();
             this.openSnackBar("File uploaded successfully");
             this.notify.emit(true);
-            this.fileInput.nativeElement.value = "";
-            this.createForm();
-            this.loading = false;
             }, error => {
               console.log(error);
+              this.openSnackBar(error)
             });
       }
     
-      clearFile() {
-        this.form.get('content').setValue(null);
+      clear() {
+        this.createForm();
         this.fileInput.nativeElement.value = '';
+        this.enableUploadButton = true;
       }
 }

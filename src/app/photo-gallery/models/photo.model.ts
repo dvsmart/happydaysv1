@@ -3,4 +3,6 @@ export class Photo {
     file:any;    
     addedBy:number
     url:string;
+    albumName:string;
+    addedOn:Date
   }

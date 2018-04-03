@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['/']);
             },
             error => {
-                alert(error.Message);
+                alert(error.message);
                 this.loading = false;
             });
   }
