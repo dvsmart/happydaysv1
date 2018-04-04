@@ -14,6 +14,7 @@ import { PhotoGalleryModule } from './photo-gallery/photo-gallery.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyHttpInterceptor } from './httpInterceptor';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 
 
@@ -31,13 +32,14 @@ import { CookieService } from 'ngx-cookie-service';
     SharedModule,
     CoreModule,
     AlbumModule,
+    NgxGalleryModule,
     PhotoGalleryModule,
   ],
   providers: [{ 
     provide: HTTP_INTERCEPTORS, 
     useClass: MyHttpInterceptor, 
     multi: true 
-}, CookieService  ],
+}, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

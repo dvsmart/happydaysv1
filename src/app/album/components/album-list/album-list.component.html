@@ -1,47 +1,49 @@
-  <mat-card>
-    <mat-card-header>
-        <div class="col-md-12">
-            <h4>Albums <button class="float-sm-right" mat-raised-button (click)="openDialog()">Add Album</button></h4>
-            <div *ngIf="errorMessage" class="alert alert-warning">
-              {{errorMessage}}
-            </div>
-        </div>
-    </mat-card-header>
-      <div fxLayout="row" fxLayoutWrap fxLayoutGap="5rem" fxLayoutAlign="center">
-          <mat-grid-list [cols]="cols | async" rowHeight="450px;" gutterSize="16px">
-              <mat-grid-tile *ngFor="let album of albums" >
-                  <mat-card class="example-card mat-elevation-z4">
-                      <mat-card-header>
-                        <mat-card-title>{{album.name}}</mat-card-title>
-                        <mat-card-subtitle><b>{{album.createdBy}}</b> | {{album.addedOn | date}}</mat-card-subtitle>
-                        <button mat-icon-button color="accent">{{album.imagesCount}}
-                          <mat-icon aria-label="Pictures" (click)="onSelect(album)">photo_library</mat-icon>
-                        </button>
-                        <button mat-icon-button [matMenuTriggerFor]="menu">
-                            <mat-icon>more_vert</mat-icon>
-                          </button>
-                          <mat-menu #menu="matMenu" overlapTrigger="false" yPosition="below">
-                            <button mat-menu-item>
-                              <mat-icon>mode_edit</mat-icon>
-                              <span>Edit</span>
-                            </button>
-                            <button mat-menu-item color="warn">
-                              <mat-icon>delete</mat-icon>
-                              <span>Delete</span>
-                            </button>
-                          </mat-menu>
-                      </mat-card-header>
-                      <img mat-card-image *ngIf="album.coverImage != undefined" [src]="album.coverImage" [alt]="album.name"/>
-                      <img mat-card-image *ngIf="album.coverImage == undefined" [src]="defaultImg" alt="NoImage">
-                      <div mat-card-avatar class="material-icons mat-o-icon">photo_album</div>
-                      <mat-card-actions>
-                          <mat-icon color="accent" class="text-center" aria-label="likes" (click)="onLike(album)" >favorite</mat-icon>
-                          <!-- <mat-icon class="float-sm-right" aria-label="share">share</mat-icon> -->
-                      </mat-card-actions>
-                    </mat-card>
-              </mat-grid-tile>
-            </mat-grid-list>
-      </div>
-  </mat-card>
-  
-  
+<mat-card style="margin-bottom:5px;">
+  <div class="col-md-12">
+    <h4>Albums
+      <button class="float-sm-right" mat-raised-button (click)="openDialog()">Add Album</button>
+    </h4>
+    <div *ngIf="errorMessage" class="alert alert-warning">
+      {{errorMessage}}
+    </div>
+  </div>
+</mat-card>
+<mat-card>
+  <div fxLayout="row" fxLayoutWrap fxLayoutGap="5rem" fxLayoutAlign="center" style="background-color:azure;padding-left:10px;padding-right:10px;">
+    <mat-grid-list [cols]="cols | async" rowHeight="380px;" gutterSize="16px">
+      <mat-grid-tile *ngFor="let album of albums">
+        <mat-card class="example-card mat-elevation-z4">
+          <mat-card-header>
+              <mat-card-title>{{album.name}}</mat-card-title>
+              <mat-card-subtitle>
+                <b>{{album.createdBy}}</b> | <i>{{album.addedOn | date}}</i></mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image *ngIf="album.coverImage != undefined" [src]="album.coverImage" [alt]="album.name" />
+          <img mat-card-image *ngIf="album.coverImage == undefined" [src]="defaultImg" alt="NoImage">
+          <div mat-card-avatar class="material-icons mat-o-icon">photo_album</div>
+          <mat-card-actions>
+            <!-- <mat-icon color="accent" aria-label="likes" (click)="onLike(album)">favorite</mat-icon> -->
+            <!-- <mat-icon class="float-sm-right" aria-label="share">share</mat-icon> -->
+            <button class="float-left" mat-icon-button color="accent"><mat-icon aria-label="Pictures" (click)="onLike(album)">favorite</mat-icon>
+            </button>
+              <button mat-icon-button [matMenuTriggerFor]="menu" class="float-right">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" overlapTrigger="false" yPosition="below">
+                <button mat-menu-item>
+                  <mat-icon>mode_edit</mat-icon>
+                  <span>Edit</span>
+                </button>
+                <button mat-menu-item color="warn">
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+              <button class="float-right" mat-icon-button color="primary"><small> {{album.imagesCount}} </small> <mat-icon aria-label="Pictures" (click)="onSelect(album)">photo_library</mat-icon>
+              </button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</mat-card>
