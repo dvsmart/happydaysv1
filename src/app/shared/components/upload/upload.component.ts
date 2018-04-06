@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, ElementRef, ViewChild, Output, Input } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { PhotoService } from '../../../photo-gallery/services/photo.service';
 import { MatSnackBar } from '@angular/material';
+import { PhotoService } from '../../services/photo.service';
 
 @Component({
   selector: 'app-upload',

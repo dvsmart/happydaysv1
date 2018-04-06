@@ -3,7 +3,9 @@
       <span class="example-fill-remaining-space"></span>
       <span class="align-center"></span>
       <span class="example-spacer"></span>
+      <button mat-button routerLink="/Home">Home</button>
       <button mat-button routerLink="/Albums">Albums</button>
+      <button mat-button routerLink="/Gallery">Gallery</button>
       <button mat-button [matMenuTriggerFor]="menu">{{currentUser}}</button>
       <mat-menu #menu="matMenu" overlapTrigger="false" yPosition="below">
         <button mat-menu-item>Profile</button>

@@ -10,11 +10,12 @@ import { AlbumModule } from './album/album.module';
 import { AppHeaderComponent } from './_layout/app-header/app-header.component';
 import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 import { HomeComponent } from './home/home.component';
-import { PhotoGalleryModule } from './photo-gallery/photo-gallery.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyHttpInterceptor } from './httpInterceptor';
 import { CookieService } from 'ngx-cookie-service';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { GalleryComponent } from './gallery/gallery.component';
+import { GalleryModule } from './gallery/gallery.module';
 
 
 
@@ -33,7 +34,7 @@ import { NgxGalleryModule } from 'ngx-gallery';
     CoreModule,
     AlbumModule,
     NgxGalleryModule,
-    PhotoGalleryModule,
+    GalleryModule
   ],
   providers: [{ 
     provide: HTTP_INTERCEPTORS, 

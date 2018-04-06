@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 import { UploadComponent } from './components/upload/upload.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   imports: [
@@ -13,8 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   exports:[
     MaterialModule,
-    UploadComponent
+    UploadComponent,
   ],
-  declarations: [UploadComponent]
+  declarations: [UploadComponent, DialogComponent]
 })
 export class SharedModule { }

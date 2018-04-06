@@ -11,6 +11,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { PhotoService } from '../shared/services/photo.service';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 @NgModule({
   imports: [
@@ -22,7 +24,8 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    NgxGalleryModule,
   ],
   providers:[AuthService,AuthguardService],
   declarations: [LoginComponent, SignupComponent]

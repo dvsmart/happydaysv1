@@ -1,0 +1,27 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav class="example-sidenav" mode="side" fixedInViewport="false" opened="true">
+            <mat-nav-list>
+                    <mat-list-item *ngFor="let album of albums">
+                       <a matLine (click)="onSelect(album.id)" [routerLink]="['photo',album.id]" routerLinkActive="active">{{ album.name }}</a>
+                    </mat-list-item>
+                  </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="accent">
+                <button mat-icon-button (click)="sidenav.toggle()">
+                        <mat-icon>more_vert</mat-icon>
+                </button>
+                <span>{{albumName}}</span>
+        </mat-toolbar>
+        <div style="padding:15px;">
+            <router-outlet></router-outlet>
+        </div>
+        <div *ngIf="load" class="container">
+            <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+

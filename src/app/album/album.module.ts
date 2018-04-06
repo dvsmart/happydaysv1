@@ -6,6 +6,8 @@ import { AddAlbumDialogComponent } from './components/add-album-dialog/add-album
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { AlbumService } from './service/album.service';
+import { SearchByNamePipe } from '../shared/pipes/search.pipe';
+import { DialogComponent } from '../shared/components/dialog/dialog.component';
 
 @NgModule({
   imports: [
@@ -13,8 +15,8 @@ import { AlbumService } from './service/album.service';
     SharedModule,
     FormsModule
   ],
-  entryComponents:[AddAlbumDialogComponent],
+  entryComponents:[AddAlbumDialogComponent,DialogComponent],
   providers:[AlbumService],
-  declarations: [AlbumComponent,AlbumListComponent, AddAlbumDialogComponent]
+  declarations: [AlbumComponent,AlbumListComponent, AddAlbumDialogComponent,SearchByNamePipe]
 })
 export class AlbumModule { }

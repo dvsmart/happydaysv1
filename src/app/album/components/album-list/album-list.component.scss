@@ -30,3 +30,12 @@ button.mat-menu-item{
 mat-icon{
     cursor: pointer;
 }
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .searchInput{
+      width:25%;
+      margin-right: 10px;
+  }

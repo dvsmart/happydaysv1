@@ -19,4 +19,11 @@ export class AlbumService {
     return this.http.get<Album[]>(this.url, {responseType: 'json'});
   }
 
+  deleteAlbum(id: number){
+    return this.http.delete(this.url + '/' + id);
+  }
+
+  getDefault(){
+    return this.http.get<Album>(this.url + '/default', {responseType: 'json'});
+  }
 }

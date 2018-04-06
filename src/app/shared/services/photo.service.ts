@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Photo } from '../models/photo.model';
 import {map} from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import { apiurl } from '../../api-config';
+import { Photo } from '../../core/models/photo.model';
 
 @Injectable()
 export class PhotoService {
@@ -21,6 +21,11 @@ export class PhotoService {
         .post(endpoint, photoModel)
         .map(() => { return true; });
   }
+
+  getAllPhotos(): Observable<Photo[]> {
+    return this.http.get<Photo[]>(apiurl + 'Image');
+  }
+
 
   
 

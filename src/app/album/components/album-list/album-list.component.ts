@@ -13,6 +13,7 @@ import { AddAlbumDialogComponent } from '../add-album-dialog/add-album-dialog.co
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/takeWhile";
 import "rxjs/add/operator/startWith";
+import { DialogComponent } from '../../../shared/components/dialog/dialog.component';
 
 @Component({
   selector: 'app-album-list',
@@ -24,23 +25,50 @@ export class AlbumListComponent implements OnInit {
   albums: Album[];
   albumName: FormControl;
   albumModel: Album;
-  errorMessage: Observable<string>;
+  errorMessage: string;
   cols: Observable<number>;
   defaultImg: string;
+  searchText:'';
+  show: boolean = true;
+
   constructor(private router: Router, private albumService: AlbumService, public dialog: MatDialog, private media: ObservableMedia) {
     this.loadAll();
   }
 
 
   loadAll() {
-    this.albumService.getAlbums().subscribe(x => { this.albums = x; });
-    this.defaultImg = "../assets/download.png";
+    this.albumService.getAlbums().subscribe(x => { 
+      this.albums = x;
+      if(x.length === 0){
+        this.show = false;
+      }else{
+        this.show = true;
+      } 
+    });
+    this.defaultImg = "../assets/images/download.png";
   }
+
 
   onLike(album: Album) {
     if (album.like === "favorite_border") {
       album.like = "favorite";
     }
+  }
+
+  deleteAlbum(album){
+    let dialogRef = this.dialog.open(DialogComponent,{
+      width: '400px',
+      data:{
+        message: 'Are you sure want to delete this Album? All the images would be removed from this Album',
+        title:'Delete Confirmation',
+        ok:true,
+      }
+    })
+    dialogRef.afterClosed().subscribe((result)=>{
+      if(result === true){
+        this.albumService.deleteAlbum(album.id).subscribe(x=>{ this.loadAll();});
+      }
+    });
   }
 
 
@@ -52,14 +80,18 @@ export class AlbumListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === undefined) return;
+      if(this.albums.length > 15){
+        this.errorMessage = "Maximum limit exceeded. Please contact the administrator.";
+        return;
+      }
       if (this.validateInput(result)) {
         var albumName = this.capitalize(result);
         this.albumName.setValue(albumName);
         this.albumModel.name = this.albumName.value;
         this.albumModel.isPublic = true;
-        this.albumService.createAlbum(this.albumModel).subscribe(x => this.loadAll());
+        this.albumService.createAlbum(this.albumModel).subscribe(x => {this.loadAll()});
       } else {
-        this.errorMessage.subscribe(x => "Oops...looks like album name already exists. Please choose a different name");
+        this.errorMessage = "Oops...looks like album name already exists. Please choose a different name";
       }
     });
   }
@@ -107,8 +139,6 @@ export class AlbumListComponent implements OnInit {
     });
     this.cols = this.media.asObservable()
       .map(change => {
-        console.log(change);
-        console.log(grid.get(change.mqAlias));
         return grid.get(change.mqAlias);
       })
       .startWith(start);
