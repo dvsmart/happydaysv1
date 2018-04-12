@@ -1,10 +1,10 @@
 mat-grid-tile {
-    padding: 20px;
     overflow: visible !important;
   }
 
   .example-card {
     max-width: 300px;
+    min-width: 300px;
     border-radius: 12px !important;
   }
 
@@ -39,3 +39,26 @@ mat-icon{
       width:25%;
       margin-right: 10px;
   }
+
+  .mat-card img{
+    object-fit: fill; /*this makes de image in src fit to the size of specified below*/
+    height: 180px;
+  }
+
+  @media (min-width: 576px){
+    .card-section{
+        margin-bottom: 10px;
+    }  
+    
+    .mat-card img{
+        object-fit: fill; /*this makes de image in src fit to the size of specified below*/
+        height: 180px;
+      }
+}
+
+@media (max-width: 599px){
+    .example-card {
+        width: 400px !important;
+        border-radius: 12px !important;
+      }
+}

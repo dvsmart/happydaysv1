@@ -1,28 +1,32 @@
 
 
   <div class="card-container">
-      <div class="card-content">
-          <form (ngSubmit)="login()" [formGroup]="form" novalidate>
-              <mat-card>
-                  <mat-card-title>
-                          Login
-                  </mat-card-title>
-                  <mat-card-content class="example-container">
-                            <mat-form-field>
-                              <input matInput placeholder="Username" formControlName="username" >
-                              <mat-error  [ngClass]="{'has-error': hasFieldError('username')}">username is required</mat-error>
-                            </mat-form-field>
-                            <mat-form-field>
-                              <input matInput placeholder="Password" formControlName="password" type="password" maxlength="10" minlength="6">
-                              <mat-error  [ngClass]="{'has-error': hasFieldError('password')}">password is required</mat-error>
-                            </mat-form-field>
-                  </mat-card-content>
-                  <mat-card-actions align="end">
-                      <img class="float-left" *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                      <button mat-raised-button color="accent" [disabled]="loading">Login</button>
-                      <button mat-raised-button color="accent" [routerLink]="['/signup']">Sign Up</button>
-                  </mat-card-actions>
-              </mat-card>
-              </form>
-      </div>
+        <form (ngSubmit)="login()" [formGroup]="form" novalidate>
+                <mat-card>
+                    <mat-card-title>
+                            Login
+                    </mat-card-title>
+                    <div class="alert alert-warning" *ngIf="errorMessage">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="clearForm()">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                            {{errorMessage}}
+                    </div>
+                    <mat-card-content class="example-container">
+                              <mat-form-field>
+                                <input matInput placeholder="Username" formControlName="username" >
+                                <mat-error  [ngClass]="{'has-error': hasFieldError('username')}">username is required</mat-error>
+                              </mat-form-field>
+                              <mat-form-field>
+                                <input matInput placeholder="Password" formControlName="password" type="password" maxlength="10" minlength="6">
+                                <mat-error  [ngClass]="{'has-error': hasFieldError('password')}">password is required</mat-error>
+                              </mat-form-field>
+                    </mat-card-content>
+                    <mat-card-actions align="end">
+                        <mat-spinner *ngIf="loading" color="accent" value="80" mode="determinate" diameter="30"></mat-spinner>
+                        <button mat-raised-button color="accent" [disabled]="loading">Login</button>
+                        <button mat-raised-button color="accent" [routerLink]="['/signup']">Sign Up</button>
+                    </mat-card-actions>
+                </mat-card>
+                </form>
     </div> 

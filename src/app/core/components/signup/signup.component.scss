@@ -29,14 +29,23 @@
     justify-content: center;
   }
   
-  .card-content {
-    background-color: #fff;
-    color: #fff;
-    height: 100px;
-    width: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    border-radius: 4px;
+  @media (max-width: 599px){
+    .mat-card{
+      width: 395px !important;
+    }
+
+    .mat-card-title{
+      font-size: 30px !important;
+    }
+
+    :host input.mat-input-element {
+      font-size: 32px;
+   }
   }
+  .mat-card-title{
+    font-size: 36px;
+  }
+
+  :host input.mat-input-element {
+    font-size: 28px;
+ }

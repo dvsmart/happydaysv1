@@ -8,12 +8,24 @@ import { FormsModule } from '@angular/forms';
 import { AlbumService } from './service/album.service';
 import { SearchByNamePipe } from '../shared/pipes/search.pipe';
 import { DialogComponent } from '../shared/components/dialog/dialog.component';
+import { Routes, RouterModule } from '@angular/router';
+import { GalleryComponent } from '../gallery/gallery.component';
+import { GalleryModule } from '../gallery/gallery.module';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: AlbumComponent
+  }
+];
+
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forChild(routes)
   ],
   entryComponents:[AddAlbumDialogComponent,DialogComponent],
   providers:[AlbumService],

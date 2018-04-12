@@ -10,18 +10,19 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { PhotoGalleryComponent } from './gallery/photo-gallery/photo-gallery.component';
 
 const appRoutes: Routes = [
-  { 
-      path: '',
-      component: AppLayoutComponent,
-      canActivate:[AuthguardService], 
-      children: [
-        { path: 'Home', component:HomeComponent},
-        { path: 'Albums', component: AlbumComponent},
-        { path: 'Gallery', component: GalleryComponent,children:[{path:'photo/:id',component:PhotoGalleryComponent}]},
-        { path: '', redirectTo:'Home',pathMatch:'full'},
-      ]
+  {
+    path: '',
+    component: AppLayoutComponent,
+    canActivate: [AuthguardService],
+    children: [
+      { path: 'Home', component: HomeComponent },
+      { path: 'Albums', loadChildren: 'app/album/album.module#AlbumModule' },
+      { path: 'Gallery', loadChildren:'app/gallery/gallery.module#GalleryModule'},
+      // { path: 'album/:id', component: PhotoGalleryComponent },
+      { path: '', redirectTo: 'Home', pathMatch: 'full' },
+    ]
   },
-  { path: 'login', component: LoginComponent},
+  { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
@@ -29,7 +30,7 @@ const appRoutes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes)],
+  imports: [RouterModule.forRoot(appRoutes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

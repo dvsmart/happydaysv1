@@ -4,10 +4,13 @@ import { Album } from '../album/model/album.model';
 import { AlbumService } from '../album/service/album.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PhotoService } from '../shared/services/photo.service';
-import { NgxGalleryOptions, NgxGalleryAnimation } from 'ngx-gallery';
+import { NgxGalleryOptions, NgxGalleryAnimation, NgxGalleryOrder } from 'ngx-gallery';
 import { NgxGalleryImage } from 'ngx-gallery';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs';
+
+import { Subscription } from 'rxjs/Subscription';
+import { MediaChange, ObservableMedia } from '@angular/flex-layout';
 
 @Component({
   selector: 'app-gallery',
@@ -17,12 +20,19 @@ import { BehaviorSubject } from 'rxjs';
 export class GalleryComponent implements OnInit {
   albums: Album[];
   albumName: string;
+  albumId: number;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
-  load:boolean = true;
-  constructor(private albumService: AlbumService,private router:Router,private photoService:PhotoService) {
-   this.albumName = 'Photos'
-   this.albumService.getAlbums().subscribe(x=>{this.albums = x;});
+  load: boolean = true;
+  isOpened: boolean;
+
+  watcher: Subscription;
+  constructor(private albumService: AlbumService, private router: Router, private photoService: PhotoService, media: ObservableMedia, private activatedRoute: ActivatedRoute) {
+    this.albumName = 'Photos'
+    this.watcher = media.subscribe((change: MediaChange) => {
+      this.isOpened = change.mqAlias != 'xs';
+    });
+    this.albumService.getAlbums().subscribe(x => { this.albums = x; });
   }
 
   loadAllImages() {
@@ -43,25 +53,38 @@ export class GalleryComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.configGalleryOptions(false, true, 5, 4);
+    this.loadAllImages();
+  }
+
+  onSelect(id: number) {
+    this.load = false;
+    this.albumId = id;
+    this.albumName = this.albums.find(x => x.id == id).name;
+  }
+
+  configGalleryOptions(imageShow?: boolean, others?: boolean, columns?: number, rows?: number) {
+    this.galleryOptions = new Array<NgxGalleryOptions>();
     this.galleryOptions = [
       {
         width: '100%',
         height: '600px',
-        thumbnailsColumns: 5,
+        thumbnailsColumns: columns ? columns : 5,
+        thumbnailsRows: rows ? rows : 0,
         imageAnimation: NgxGalleryAnimation.Zoom,
-        imageDescription: true,
-        imageSwipe: true,
-        imageInfinityMove: true,
-        imageArrows: true,
-        imageArrowsAutoHide: true,
-        previewAnimation: true,
+        thumbnailsOrder: NgxGalleryOrder.Row,
+        imageDescription: others ? false : true,
+        imageSwipe: others ? false : true,
+        imageInfinityMove: others ? false : true,
+        imageArrows: others ? false : true,
+        imageArrowsAutoHide: others ? false : true,
+        previewAnimation: others ? false : true,
         lazyLoading: true,
-        image: true,
-        thumbnailsArrowsAutoHide: true,
-        previewFullscreen: true,
+        image: imageShow,
+        thumbnailsArrowsAutoHide: others ? false : true,
+        previewFullscreen: others ? false : true,
         thumbnailMargin: 2,
         thumbnailsMargin: 2,
-        layout: "thumbnails-top"
       },
       // max-width 400
       {
@@ -71,12 +94,10 @@ export class GalleryComponent implements OnInit {
         imageSize: '100%'
       }
     ];
-    this.loadAllImages();
   }
 
-  onSelect(id:number){
-    this.load = false;
-    this.albumName = this.albums.find(x=>x.id == id).name;
-    
+  showthumbnails() {
+    this.configGalleryOptions(true, false, 5, 3);
+    this.loadAllImages();
   }
 }

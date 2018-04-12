@@ -12,6 +12,7 @@ export class SignupComponent implements OnInit {
   }
   model: any = {};
   loading = false;
+  errorMessage:string;
 
   constructor(
       private router: Router,private authService : AuthService
@@ -22,10 +23,12 @@ export class SignupComponent implements OnInit {
       this.authService.create(this.model)
           .subscribe(
               data => {
-                console.log(data);
+                  debugger;
                   this.router.navigate(['/login']);
               },
-              error => {
+              errorResponse => {
+                  debugger;
+                  this.errorMessage = errorResponse.error.message;
                   this.loading = false;
               });
   }

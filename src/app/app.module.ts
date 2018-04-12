@@ -15,7 +15,7 @@ import { MyHttpInterceptor } from './httpInterceptor';
 import { CookieService } from 'ngx-cookie-service';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { GalleryComponent } from './gallery/gallery.component';
-import { GalleryModule } from './gallery/gallery.module';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -27,14 +27,13 @@ import { GalleryModule } from './gallery/gallery.module';
     HomeComponent
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
     CoreModule,
     AlbumModule,
-    NgxGalleryModule,
-    GalleryModule
+    NgxGalleryModule
   ],
   providers: [{ 
     provide: HTTP_INTERCEPTORS, 

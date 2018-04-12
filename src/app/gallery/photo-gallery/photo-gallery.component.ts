@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation, NgxGalleryOrder } from 'ngx-gallery';
 import { ActivatedRoute } from '@angular/router';
 import { Photo } from '../../core/models/photo.model';
 import { PhotoService } from '../../shared/services/photo.service';
@@ -22,7 +22,7 @@ export class PhotoGalleryComponent implements OnInit {
 
   loadAllImages() {
     this.galleryImages = [];
-    this.photoService.getAllPhotos().subscribe(x => { this.photos = x;console.log(x); this.getGalleryImages(x) });
+    this.photoService.getAllPhotos().subscribe(x => { this.photos = x; console.log(x); this.getGalleryImages(x) });
   }
 
   ngOnInit() {
@@ -33,8 +33,8 @@ export class PhotoGalleryComponent implements OnInit {
     this.galleryOptions = [
       {
         width: '100%',
-        height: '600px',
-        thumbnailsColumns: 4,
+        height: '650px',
+        thumbnailsColumns: 5,
         imageAnimation: NgxGalleryAnimation.Zoom,
         imageDescription: true,
         imageSwipe: true,
@@ -43,26 +43,40 @@ export class PhotoGalleryComponent implements OnInit {
         imageArrowsAutoHide: true,
         previewAnimation: true,
         lazyLoading: true,
-        image: true,
+        image: false,
         thumbnailsArrowsAutoHide: true,
         previewFullscreen: true,
         thumbnailMargin: 2,
         thumbnailsMargin: 2,
-        layout: "thumbnails-top"
+        layout: "thumbnails-top",
+        thumbnailsRows:3,
+        thumbnailsOrder: NgxGalleryOrder.Row
+        
       },
       // max-width 400
       {
-        breakpoint: 420,
+        breakpoint: 800,
+        width: '100%',
+        height: '600px',
+        imagePercent: 80,
+        thumbnailsPercent: 20,
+        thumbnailsMargin: 20,
+        thumbnailMargin: 20
+      },
+      {
+        breakpoint: 559,
         preview: true,
         width: '100%',
-        imageSize: '100%'
+        imageSize: '100%',
+        imageSwipe: true,
+        thumbnails: false
       }
     ];
   }
 
   loadImages(id: number) {
     this.galleryImages = [];
-    this.photoService.getPhotos(id).subscribe(x => { this.photos = x;console.log(x); this.getGalleryImages(x) });
+    this.photoService.getPhotos(id).subscribe(x => { this.photos = x; console.log(x); this.getGalleryImages(x) });
   }
   getGalleryImages(photos) {
     photos.forEach(element => {

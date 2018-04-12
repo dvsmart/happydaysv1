@@ -3,12 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { GalleryComponent } from './gallery.component';
 import { PhotoGalleryComponent } from './photo-gallery/photo-gallery.component';
 
-
-
 const galleryRoutes: Routes = [
-  {path: 'photos/:id',component:PhotoGalleryComponent}
+  {
+    path: '',
+    component: GalleryComponent,children:[{ path: 'album/:id', component: PhotoGalleryComponent }]
+  }
 ];
-
 
 @NgModule({
   imports: [RouterModule.forChild(galleryRoutes)],

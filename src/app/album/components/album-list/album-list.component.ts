@@ -28,7 +28,7 @@ export class AlbumListComponent implements OnInit {
   errorMessage: string;
   cols: Observable<number>;
   defaultImg: string;
-  searchText:'';
+  searchText: '';
   show: boolean = true;
 
   constructor(private router: Router, private albumService: AlbumService, public dialog: MatDialog, private media: ObservableMedia) {
@@ -37,13 +37,13 @@ export class AlbumListComponent implements OnInit {
 
 
   loadAll() {
-    this.albumService.getAlbums().subscribe(x => { 
+    this.albumService.getAlbums().subscribe(x => {
       this.albums = x;
-      if(x.length === 0){
+      if (x.length === 0) {
         this.show = false;
-      }else{
+      } else {
         this.show = true;
-      } 
+      }
     });
     this.defaultImg = "../assets/images/download.png";
   }
@@ -55,18 +55,18 @@ export class AlbumListComponent implements OnInit {
     }
   }
 
-  deleteAlbum(album){
-    let dialogRef = this.dialog.open(DialogComponent,{
+  deleteAlbum(album) {
+    let dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
-      data:{
+      data: {
         message: 'Are you sure want to delete this Album? All the images would be removed from this Album',
-        title:'Delete Confirmation',
-        ok:true,
+        title: 'Delete Confirmation',
+        ok: true,
       }
     })
-    dialogRef.afterClosed().subscribe((result)=>{
-      if(result === true){
-        this.albumService.deleteAlbum(album.id).subscribe(x=>{ this.loadAll();});
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === true) {
+        this.albumService.deleteAlbum(album.id).subscribe(x => { this.loadAll(); });
       }
     });
   }
@@ -80,7 +80,7 @@ export class AlbumListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === undefined) return;
-      if(this.albums.length > 15){
+      if (this.albums.length > 15) {
         this.errorMessage = "Maximum limit exceeded. Please contact the administrator.";
         return;
       }
@@ -89,7 +89,7 @@ export class AlbumListComponent implements OnInit {
         this.albumName.setValue(albumName);
         this.albumModel.name = this.albumName.value;
         this.albumModel.isPublic = true;
-        this.albumService.createAlbum(this.albumModel).subscribe(x => {this.loadAll()});
+        this.albumService.createAlbum(this.albumModel).subscribe(x => { this.loadAll() });
       } else {
         this.errorMessage = "Oops...looks like album name already exists. Please choose a different name";
       }
@@ -120,16 +120,16 @@ export class AlbumListComponent implements OnInit {
   }
 
   onSelect(album: Album) {
-    this.router.navigateByUrl('/photos/' + album.id);
+    this.router.navigateByUrl('Gallery/album/' + album.id);
   }
 
   updateGrid() {
     const grid = new Map([
       ["xs", 1],
       ["sm", 2],
-      ["md", 2],
-      ["lg", 3],
-      ["xl", 4]
+      ["md", 3],
+      ["lg", 4],
+      ["xl", 5]
     ]);
     let start: number;
     grid.forEach((cols, mqAlias) => {
