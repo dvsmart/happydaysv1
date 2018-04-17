@@ -4,7 +4,6 @@ import {map} from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import { Photo } from '../../core/models/photo.model';
 import { environment } from '../../../environments/environment';
-import { apiurl } from '../../api-config';
 
 @Injectable()
 export class PhotoService {

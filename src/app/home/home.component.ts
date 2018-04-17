@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation, NgxGalleryImageSize } from 'ngx-gallery';
 import { HomeService } from './home.service';
 
 @Component({
@@ -16,12 +16,13 @@ export class HomeComponent implements OnInit {
     this.galleryOptions = [
       {
         width: '100%',
-        height: '600px',
+        height: '700px',
         imageAnimation: NgxGalleryAnimation.Slide,
         thumbnails: false,
         preview: false,
         imagePercent :100,
-        imageSwipe:true
+        imageSwipe:true,
+        imageInfinityMove:true
       },
       // max-width 800
       {
@@ -30,7 +31,8 @@ export class HomeComponent implements OnInit {
         height: '400px',
         thumbnails: false,
         preview: false,
-        imageSwipe:true
+        imageSwipe:true,
+        imageInfinityMove:true
       },
       // max-width 400
       {
@@ -38,7 +40,8 @@ export class HomeComponent implements OnInit {
         width: '100%',
         height: '300px',
         thumbnails: false,
-        preview: false
+        preview: false,
+        imageInfinityMove:true
       }
     ];
     this.loadAllImages();
