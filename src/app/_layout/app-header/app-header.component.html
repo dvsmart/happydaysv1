@@ -1,16 +1,35 @@
-<mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <span class="example-fill-remaining-space"></span>
-      <span class="align-center"></span>
-      <span class="example-spacer"></span>
+<mat-toolbar color="primary" style="position:fixed;z-index:9999;top:0;">
+  <mat-toolbar-row>
+    <span class="h4">Happy Days</span>
+    <span class="example-spacer"></span>
+    <span class="align-center"></span>
+    <span class="example-spacer"></span>
+
+    <div *ngIf="!showMenu">
       <button mat-button routerLink="/Home" routerLinkActive="active">Home</button>
       <button mat-button routerLink="/Albums" routerLinkActive="active">Albums</button>
       <button mat-button routerLink="/Gallery" routerLinkActive="active">Gallery</button>
       <button mat-button [matMenuTriggerFor]="menu">{{currentUser}}</button>
       <mat-menu #menu="matMenu" overlapTrigger="false" yPosition="below">
-        <button mat-menu-item>Profile</button>
+        <button mat-menu-item routerLink="/Profile">Profile</button>
         <button mat-menu-item (click)="onLogout()">Log out</button>
       </mat-menu>
+    </div>
+    <div *ngIf="showMenu">
+        <span>{{currentUser}}</span>
+      <button mat-icon-button [matMenuTriggerFor]="mobmenu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #mobmenu="matMenu" overlapTrigger="false" yPosition="below">
+        <button mat-menu-item routerLink="/Home" routerLinkActive="active">Home</button>
+        <button mat-menu-item routerLink="/Albums" routerLinkActive="active">Albums</button>
+        <button mat-menu-item routerLink="/Gallery" routerLinkActive="active">Gallery</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item routerLink="/Profile">Profile</button>
+        <button mat-menu-item (click)="onLogout()">Log out</button>
+      </mat-menu>
+    </div>
 
-    </mat-toolbar-row>
-  </mat-toolbar>
+
+  </mat-toolbar-row>
+</mat-toolbar>

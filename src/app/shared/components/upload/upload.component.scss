@@ -14,3 +14,11 @@
   .upload-widget{
     padding: 2px;
   }
+  
+
+  @media (max-width: 599px){
+    .button-wrapper-xs{
+      margin-top: 15px;
+      text-align: center !important
+    }
+  }

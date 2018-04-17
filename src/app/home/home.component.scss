@@ -1,9 +1,16 @@
 .card-section{
     margin-bottom: 10px;
+    margin-top: 15px;
 }
 
 @media (min-width: 576px){
     .card-section{
         margin-bottom: 10px;
     }   
+
+    .wrapper{
+        margin-top: 55px!important;
+    }
+
 }
+

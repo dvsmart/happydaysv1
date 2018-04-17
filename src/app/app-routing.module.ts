@@ -6,8 +6,6 @@ import { AlbumComponent } from './album/components/album.component';
 import { AuthguardService } from './core/services/authguard.service';
 import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 import { HomeComponent } from './home/home.component';
-import { GalleryComponent } from './gallery/gallery.component';
-import { PhotoGalleryComponent } from './gallery/photo-gallery/photo-gallery.component';
 
 const appRoutes: Routes = [
   {
@@ -18,7 +16,7 @@ const appRoutes: Routes = [
       { path: 'Home', component: HomeComponent },
       { path: 'Albums', loadChildren: 'app/album/album.module#AlbumModule' },
       { path: 'Gallery', loadChildren:'app/gallery/gallery.module#GalleryModule'},
-      // { path: 'album/:id', component: PhotoGalleryComponent },
+      { path: 'Profile', loadChildren:'app/profile/profile.module#ProfileModule'},
       { path: '', redirectTo: 'Home', pathMatch: 'full' },
     ]
   },

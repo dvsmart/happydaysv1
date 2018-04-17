@@ -2,15 +2,19 @@
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>
 <div class="upload-widget">
-      <form [formGroup]="form" class="form-inline">
-          <!-- <mat-form-field color="accent">
-            <input matInput placeholder="Name" type="text" formControlName="name">
-          </mat-form-field>   -->
-          <div>
-            <input type="file" id="content" (change)="onFileChange($event)" #fileInput multiple="" accept="image/*">
-          </div>
-          <button mat-raised-button color="warn" (click)="clear()" *ngIf="!enableUploadButton">Clear</button>
-          <button mat-raised-button color="accent" type="submit" [disabled]="enableUploadButton" (click)="onSubmit()">Upload</button>
-      </form>
+    <form [formGroup]="form">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <input type="file" id="content" (change)="onFileChange($event)" #fileInput multiple="" accept="image/*">
+                    </div>
+                </div>
+                <div class="col-md-6 button-wrapper-xs">
+                    <button mat-raised-button color="warn" (click)="clear()" *ngIf="!enableUploadButton">Clear</button>
+                    <button mat-raised-button color="accent" type="submit" [disabled]="enableUploadButton" (click)="onSubmit()">Upload</button>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
-

@@ -14,8 +14,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyHttpInterceptor } from './httpInterceptor';
 import { CookieService } from 'ngx-cookie-service';
 import { NgxGalleryModule } from 'ngx-gallery';
-import { GalleryComponent } from './gallery/gallery.component';
 import { CommonModule } from '@angular/common';
+import { HomeService } from './home/home.service';
 
 
 
@@ -39,7 +39,7 @@ import { CommonModule } from '@angular/common';
     provide: HTTP_INTERCEPTORS, 
     useClass: MyHttpInterceptor, 
     multi: true 
-}, CookieService],
+}, CookieService,HomeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

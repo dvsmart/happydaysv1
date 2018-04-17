@@ -1,9 +1,8 @@
-<div class="container-fluid">
-    <mat-card>
-            <app-upload [albumId]="albumId" (notify)="updateImages($event)"></app-upload>
-    </mat-card>
-    <mat-card style="margin-top:5px;">
-            <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
-    </mat-card>
-    
+<div class="container-fluid" style="margin-top:5px;">
+        <mat-card>
+                <app-upload [albumId]="albumId" (notify)="updateImages($event)"></app-upload>
+        </mat-card>
+        <mat-card style="margin-top:5px;">
+                <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+        </mat-card>
 </div>

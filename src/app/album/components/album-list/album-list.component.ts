@@ -31,14 +31,18 @@ export class AlbumListComponent implements OnInit {
   searchText: '';
   show: boolean = true;
 
+  loading:boolean;
+
   constructor(private router: Router, private albumService: AlbumService, public dialog: MatDialog, private media: ObservableMedia) {
     this.loadAll();
   }
 
 
   loadAll() {
+    this.loading = true;
     this.albumService.getAlbums().subscribe(x => {
       this.albums = x;
+      this.loading = false;
       if (x.length === 0) {
         this.show = false;
       } else {
@@ -56,6 +60,7 @@ export class AlbumListComponent implements OnInit {
   }
 
   deleteAlbum(album) {
+    this.loading = true;
     let dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
       data: {
@@ -66,7 +71,7 @@ export class AlbumListComponent implements OnInit {
     })
     dialogRef.afterClosed().subscribe((result) => {
       if (result === true) {
-        this.albumService.deleteAlbum(album.id).subscribe(x => { this.loadAll(); });
+        this.albumService.deleteAlbum(album.id).subscribe(x => { this.loadAll();this.loading  = false; });
       }
     });
   }
@@ -79,6 +84,7 @@ export class AlbumListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.loading = true;
       if (result === undefined) return;
       if (this.albums.length > 15) {
         this.errorMessage = "Maximum limit exceeded. Please contact the administrator.";
@@ -89,7 +95,7 @@ export class AlbumListComponent implements OnInit {
         this.albumName.setValue(albumName);
         this.albumModel.name = this.albumName.value;
         this.albumModel.isPublic = true;
-        this.albumService.createAlbum(this.albumModel).subscribe(x => { this.loadAll() });
+        this.albumService.createAlbum(this.albumModel).subscribe(x => { this.loadAll();this.loading = false; });
       } else {
         this.errorMessage = "Oops...looks like album name already exists. Please choose a different name";
       }

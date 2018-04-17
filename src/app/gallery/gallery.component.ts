@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Output } from '@angular/core';
-import { MatDrawer } from '@angular/material';
+import { MatDrawer, MatSidenav } from '@angular/material';
 import { Album } from '../album/model/album.model';
 import { AlbumService } from '../album/service/album.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -23,16 +23,28 @@ export class GalleryComponent implements OnInit {
   albumId: number;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
-  load: boolean = true;
-  isOpened: boolean;
+  load: boolean;
+  isOpened: boolean = true;
+  mode: string = 'side';
+  @ViewChild('sidenav') sidenav: MatSidenav;
 
   watcher: Subscription;
   constructor(private albumService: AlbumService, private router: Router, private photoService: PhotoService, media: ObservableMedia, private activatedRoute: ActivatedRoute) {
-    this.albumName = 'Photos'
+    debugger;
+    if (this.activatedRoute.snapshot.firstChild != null && this.activatedRoute.snapshot.firstChild.url[1].path != null && this.activatedRoute.snapshot.firstChild.url[1].path != undefined) {
+      this.load = false;
+      this.albumId = +this.activatedRoute.snapshot.firstChild.url[1].path;
+    }else{
+      this.albumName = 'Photos';
+      this.load = true;
+    }
     this.watcher = media.subscribe((change: MediaChange) => {
-      this.isOpened = change.mqAlias != 'xs';
+      if (change.mqAlias === 'xs') {
+        this.isOpened = false;
+        this.mode = 'side';
+      }
     });
-    this.albumService.getAlbums().subscribe(x => { this.albums = x; });
+    this.albumService.getAlbums().subscribe(x => { this.albums = x; if(this.albumId != null){ this.albumName = this.albums.find(x => x.id == this.albumId).name; }});
   }
 
   loadAllImages() {
@@ -57,10 +69,18 @@ export class GalleryComponent implements OnInit {
     this.loadAllImages();
   }
 
+  getAlbumName() {
+    if (this.albumId !== null) {
+      this.albumName = this.albums.find(x => x.id == this.albumId).name;
+    }else{
+      this.albumName = 'Photos';
+    }
+  }
+
   onSelect(id: number) {
     this.load = false;
     this.albumId = id;
-    this.albumName = this.albums.find(x => x.id == id).name;
+    this.getAlbumName();
   }
 
   configGalleryOptions(imageShow?: boolean, others?: boolean, columns?: number, rows?: number) {
@@ -68,7 +88,7 @@ export class GalleryComponent implements OnInit {
     this.galleryOptions = [
       {
         width: '100%',
-        height: '600px',
+        height: '770px',
         thumbnailsColumns: columns ? columns : 5,
         thumbnailsRows: rows ? rows : 0,
         imageAnimation: NgxGalleryAnimation.Zoom,
@@ -88,16 +108,18 @@ export class GalleryComponent implements OnInit {
       },
       // max-width 400
       {
-        breakpoint: 420,
+        breakpoint: 559,
         preview: true,
         width: '100%',
-        imageSize: '100%'
+        imageSwipe: true,
+        thumbnailsColumns: 2,
+        thumbnails: true
       }
     ];
   }
 
   showthumbnails() {
-    this.configGalleryOptions(true, false, 5, 3);
+    this.configGalleryOptions(true, true, 5, 1);
     this.loadAllImages();
   }
 }

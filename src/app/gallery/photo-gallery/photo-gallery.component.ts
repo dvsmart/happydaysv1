@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation, NgxGalleryOrder } from 'ngx-gallery';
 import { ActivatedRoute } from '@angular/router';
 import { Photo } from '../../core/models/photo.model';
 import { PhotoService } from '../../shared/services/photo.service';
 import { Observable } from 'rxjs/Observable';
+
 
 @Component({
   selector: 'app-photo-gallery',
@@ -17,7 +18,9 @@ export class PhotoGalleryComponent implements OnInit {
   albumId: number;
   paramsSub: any;
   obj = { small: '', medium: '', big: '', description: '' };
+
   constructor(private photoService: PhotoService, private activatedRoute: ActivatedRoute) {
+    debugger;
   }
 
   loadAllImages() {
@@ -67,9 +70,9 @@ export class PhotoGalleryComponent implements OnInit {
         breakpoint: 559,
         preview: true,
         width: '100%',
-        imageSize: '100%',
         imageSwipe: true,
-        thumbnails: false
+        thumbnailsColumns:1,
+        thumbnails: true
       }
     ];
   }

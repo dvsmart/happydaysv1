@@ -1,0 +1,15 @@
+.container-fluid{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.wrapper{
+    margin-top: 60px;
+}
+
+@media (max-width: 576px){
+    .wrapper{
+        margin-top: 55px!important;
+    }
+
+}

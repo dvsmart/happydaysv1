@@ -16,11 +16,12 @@
 
   @media (max-width: 599px){
     .mat-card{
-      width: 395px !important;
+      width: 395px!important;
     }
 
     .mat-card-title{
       font-size: 30px !important;
+      text-align: center;
     }
 
     :host input.mat-input-element {
@@ -28,15 +29,42 @@
    }
   }
 
+  @media (max-width: 400px){
+    .mat-card{
+      width: 360px!important;
+    }
+
+    .mat-card-title{
+      font-size: 28px !important;
+      text-align: center;
+    }
+
+    :host input.mat-input-element {
+      font-size: 32px;
+   }
+  }
+
+
+  @media (max-width: 360px){
+    .mat-card{
+      width: 345px!important;
+      top: -20px;
+    }
+
+    .mat-card-title{
+      font-size: 26px !important;
+      text-align: center;
+    }
+
+    :host input.mat-input-element {
+      font-size: 32px;
+   }
+  }
   .card-container {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .mat-card{
-    width: 100%;
   }
 
   .mat-card-title{
@@ -46,3 +74,40 @@
   :host input.mat-input-element {
     font-size: 28px;
  }
+
+ @media (min-width: 640px) and (max-width: 1024px) {
+  .mat-card{
+    width: 500px!important;
+  }
+  .example-container{
+    width: 450px !important;
+  }
+
+  .mat-card-title{
+    font-size: 42px !important;
+    text-align: center;
+  }
+
+  :host input.mat-input-element {
+    font-size: 32px;
+ }
+}
+
+@media (min-width: 1024px){
+  .mat-card{
+    width: 700px!important;
+  }
+  .example-container{
+    width: 650px !important;
+  }
+  
+  .mat-card-title{
+    font-size: 42px !important;
+    text-align: center;
+  }
+  
+  :host input.mat-input-element {
+    font-size: 32px;
+  }
+}
+
