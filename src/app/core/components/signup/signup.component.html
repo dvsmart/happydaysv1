@@ -1,3 +1,9 @@
+
+<div class="container" style="margin-top: 50px;">
+  <div class="alert alert-success" *ngIf="successMessage">
+    {{successMessage}}
+  </div>
+</div>
 <div class="card-container">
   <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
     <mat-card>
@@ -8,15 +14,6 @@
         {{errorMessage}}
       </div>
       <mat-card-content class="example-container">
-        <mat-form-field>
-          <input matInput placeholder="First Name" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required>
-          <mat-error *ngIf="f.submitted && !firstName.valid">firstname is required</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Last Name" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" required>
-          <mat-error *ngIf="f.submitted && !lastName.valid">lastName is required</mat-error>
-        </mat-form-field>
-
         <mat-form-field>
           <input matInput placeholder="Username" name="username" [(ngModel)]="model.username" #username="ngModel" required>
           <mat-error *ngIf="f.submitted && !username.valid">username is required</mat-error>

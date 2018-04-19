@@ -2,51 +2,48 @@
 <div class="container">
   <!-- Example row of columns -->
   <div class="row">
-    <div class="col-md-4 card-section">
+    <div class="col-md-4 card-section animated fadeInLeft" id="albumcard">
       <mat-card>
         <mat-card-title>
             <div mat-card-avatar class="material-icons">photo_library</div>
           Albums
         </mat-card-title>
         <mat-card-content>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
-                nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+            <p>Create your own albums, share your happiness!!!
                 </p>
         </mat-card-content>
-        <mat-card-actions>
-            <button mat-raised-button color="warn">View</button>
+        <mat-card-actions class="mobile-center">
+            <button mat-raised-button color="warn" routerLink="/Albums">View</button>
         </mat-card-actions>
       </mat-card>
     </div>
-    <div class="col-md-4 card-section">
+    <div class="col-md-4 card-section animated fadeInUp" id="photocard">
         <mat-card>
             <mat-card-title>
                 <div mat-card-avatar class="material-icons">photo_album</div>
               Gallery
             </mat-card-title>
             <mat-card-content>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
-                    nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+                <p><i>"Live life", take pictures, relieve Memories...repeat!</i>
                     </p>
             </mat-card-content>
-            <mat-card-actions>
-                <button mat-raised-button color="warn">View</button>
+            <mat-card-actions class="mobile-center">
+                <button mat-raised-button color="warn" routerLink="/Gallery">View</button>
             </mat-card-actions>
           </mat-card>
     </div>
-    <div class="col-md-4 card-section">
+    <div class="col-md-4 card-section animated fadeInRight" id="aboutmecard">
         <mat-card>
             <mat-card-title>
                 <div mat-card-avatar class="material-icons">photo_album</div>
               About
             </mat-card-title>
             <mat-card-content>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
-                    nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-                    </p>
+                <p>Edit your profile <mat-icon>mode_edit</mat-icon>
+                </p>
             </mat-card-content>
-            <mat-card-actions>
-                <button mat-raised-button color="warn">View</button>
+            <mat-card-actions class="mobile-center">
+                <button mat-raised-button color="warn" routerLink="/Profile">View</button>
             </mat-card-actions>
           </mat-card>
     </div>

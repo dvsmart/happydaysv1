@@ -1,81 +1,84 @@
+.card-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 .example-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .example-container > * {
-    width: 100%;
-  }
+  display: flex;
+  flex-direction: column;
+}
 
-  $breakpoint-tablet: 768px;
-  @media (min-width: $breakpoint-tablet) {
-    .example-container{
-        width: 400px;
-    }
-  }
+.example-container > * {
+  width: 100%;
+}
 
-  @media (max-width: 599px){
-    .mat-card{
-      width: 395px!important;
-    }
-
-    .mat-card-title{
-      font-size: 30px !important;
-      text-align: center;
-    }
-
-    :host input.mat-input-element {
-      font-size: 32px;
-   }
-  }
-
-  @media (max-width: 400px){
-    .mat-card{
-      width: 360px!important;
-    }
-
-    .mat-card-title{
-      font-size: 28px !important;
-      text-align: center;
-    }
-
-    :host input.mat-input-element {
-      font-size: 32px;
-   }
-  }
-
-
-  @media (max-width: 360px){
-    .mat-card{
-      width: 345px!important;
-      top: -20px;
-    }
-
-    .mat-card-title{
-      font-size: 26px !important;
-      text-align: center;
-    }
-
-    :host input.mat-input-element {
-      font-size: 32px;
-   }
-  }
-  .card-container {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@media (max-width: 599px){
+  .mat-card{
+    width: 395px!important;
   }
 
   .mat-card-title{
-    font-size: 36px;
+    font-size: 30px !important;
+    text-align: center;
   }
 
   :host input.mat-input-element {
-    font-size: 28px;
+    font-size: 32px;
  }
+}
 
- @media (min-width: 640px) and (max-width: 1024px) {
+@media (max-width: 400px){
+  .mat-card{
+    width: 360px!important;
+  }
+
+  .mat-card-title{
+    font-size: 28px !important;
+    text-align: center;
+  }
+
+  :host input.mat-input-element {
+    font-size: 32px;
+ }
+}
+
+
+@media (max-width: 360px){
+  .mat-card{
+    width: 345px!important;
+  }
+
+  .mat-card-title{
+    font-size: 26px !important;
+    text-align: center;
+  }
+
+  :host input.mat-input-element {
+    font-size: 32px;
+ }
+}
+
+
+@media (max-width: 360px){
+  .mat-card{
+    width: 345px!important;
+    top: -20px;
+  }
+
+  .mat-card-title{
+    font-size: 26px !important;
+    text-align: center;
+  }
+
+  :host input.mat-input-element {
+    font-size: 24px;
+ }
+}
+
+@media (min-width: 640px) and (max-width: 1024px) {
   .mat-card{
     width: 500px!important;
   }
@@ -84,12 +87,12 @@
   }
 
   .mat-card-title{
-    font-size: 42px !important;
+    font-size: 26px !important;
     text-align: center;
   }
 
   :host input.mat-input-element {
-    font-size: 32px;
+    font-size: 26px;
  }
 }
 
@@ -107,7 +110,6 @@
   }
   
   :host input.mat-input-element {
-    font-size: 32px;
+    font-size: 28px;
   }
 }
-

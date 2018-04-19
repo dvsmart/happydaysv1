@@ -27,10 +27,9 @@ export class GalleryComponent implements OnInit {
   isOpened: boolean = true;
   mode: string = 'side';
   @ViewChild('sidenav') sidenav: MatSidenav;
-
+  message:string;
   watcher: Subscription;
   constructor(private albumService: AlbumService, private router: Router, private photoService: PhotoService, media: ObservableMedia, private activatedRoute: ActivatedRoute) {
-    debugger;
     if (this.activatedRoute.snapshot.firstChild != null && this.activatedRoute.snapshot.firstChild.url[1].path != null && this.activatedRoute.snapshot.firstChild.url[1].path != undefined) {
       this.load = false;
       this.albumId = +this.activatedRoute.snapshot.firstChild.url[1].path;
@@ -39,9 +38,9 @@ export class GalleryComponent implements OnInit {
       this.load = true;
     }
     this.watcher = media.subscribe((change: MediaChange) => {
-      if (change.mqAlias === 'xs') {
+      if (change.mqAlias === 'xs' || change.mqAlias === 'sm') {
         this.isOpened = false;
-        this.mode = 'side';
+        this.mode = 'push';
       }
     });
     this.albumService.getAlbums().subscribe(x => { this.albums = x; if(this.albumId != null){ this.albumName = this.albums.find(x => x.id == this.albumId).name; }});
@@ -49,7 +48,7 @@ export class GalleryComponent implements OnInit {
 
   loadAllImages() {
     this.galleryImages = [];
-    this.photoService.getAllPhotos().subscribe(x => { this.getGalleryImages(x) });
+    this.photoService.getAllPhotos().subscribe(x => { if(x.length === 0){this.message = 'No Pictures found'};this.getGalleryImages(x); });
   }
 
   getGalleryImages(photos) {

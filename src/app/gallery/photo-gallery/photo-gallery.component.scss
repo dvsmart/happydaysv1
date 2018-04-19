@@ -1,0 +1,12 @@
+.content {
+    //width: 400px;
+    margin: auto auto;
+    margin-top: 25px;
+    text-align: center;
+}
+
+@media (max-width: 599px) {
+    span{
+        font-size: 12px;
+    }
+}

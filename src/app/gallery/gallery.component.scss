@@ -8,14 +8,14 @@
 
 .example-sidenav {
   display: flex;
-  align-items: center;
+  // align-items: center;
   justify-content: center;
   width: 300px;
   background: rgba(255, 0, 0, 0.5);
 }
 
 .active{
-  color: #FFF !important;
+  color: black !important;
 }
 
 @media (max-width: 599px){
@@ -31,4 +31,13 @@
 
 .container-fluid{
   padding: 20px!important;
+}
+
+.content {
+  width: 200px;
+  margin: auto auto;
+}
+
+.mat-list-item a{
+  font-size: 26px;
 }

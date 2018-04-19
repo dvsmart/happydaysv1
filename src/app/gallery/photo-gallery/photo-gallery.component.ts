@@ -17,16 +17,12 @@ export class PhotoGalleryComponent implements OnInit {
   photos: Photo[];
   albumId: number;
   paramsSub: any;
+  message: string;
+  hasPhotos: boolean;
   obj = { small: '', medium: '', big: '', description: '' };
-
   constructor(private photoService: PhotoService, private activatedRoute: ActivatedRoute) {
-    debugger;
   }
-
-  loadAllImages() {
-    this.galleryImages = [];
-    this.photoService.getAllPhotos().subscribe(x => { this.photos = x; console.log(x); this.getGalleryImages(x) });
-  }
+ 
 
   ngOnInit() {
     this.paramsSub = this.activatedRoute.params.subscribe(params => {
@@ -36,7 +32,7 @@ export class PhotoGalleryComponent implements OnInit {
     this.galleryOptions = [
       {
         width: '100%',
-        height: '650px',
+        height: '500px',
         thumbnailsColumns: 5,
         imageAnimation: NgxGalleryAnimation.Zoom,
         imageDescription: true,
@@ -52,9 +48,9 @@ export class PhotoGalleryComponent implements OnInit {
         thumbnailMargin: 2,
         thumbnailsMargin: 2,
         layout: "thumbnails-top",
-        thumbnailsRows:3,
+        thumbnailsRows: 2,
         thumbnailsOrder: NgxGalleryOrder.Row
-        
+
       },
       // max-width 400
       {
@@ -71,7 +67,7 @@ export class PhotoGalleryComponent implements OnInit {
         preview: true,
         width: '100%',
         imageSwipe: true,
-        thumbnailsColumns:1,
+        thumbnailsColumns: 1,
         thumbnails: true
       }
     ];
@@ -79,18 +75,26 @@ export class PhotoGalleryComponent implements OnInit {
 
   loadImages(id: number) {
     this.galleryImages = [];
-    this.photoService.getPhotos(id).subscribe(x => { this.photos = x; console.log(x); this.getGalleryImages(x) });
+    this.photoService.getPhotos(id).subscribe(x => { this.getGalleryImages(x) });
   }
   getGalleryImages(photos) {
-    photos.forEach(element => {
-      var imgObj = {
-        small: element.secureUrl,
-        medium: element.secureUrl,
-        big: element.secureUrl,
-        description: element.name + ' - Added by ' + element.addedBy + ' on ' + element.addedOn
-      }
-      this.galleryImages.push(imgObj);
-    });
+    if (photos != null && photos.length > 0) {
+      this.message = '';
+      this.hasPhotos = true;
+      photos.forEach(element => {
+        var imgObj = {
+          small: element.secureUrl,
+          medium: element.secureUrl,
+          big: element.secureUrl,
+          description: element.name + ' - Added by ' + element.addedBy + ' on ' + element.addedOn
+        }
+        this.galleryImages.push(imgObj);
+      });
+    } else {
+      this.hasPhotos = false;
+      this.message = 'No Pictures uploaded. Please upload your photos.';
+    }
+
   }
 
   updateImages($event) {

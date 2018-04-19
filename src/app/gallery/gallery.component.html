@@ -17,7 +17,7 @@
     <mat-sidenav-content>
         <mat-toolbar color="accent">
             <button mat-icon-button (click)="sidenav.toggle()">
-                <mat-icon>more_vert</mat-icon>
+                <mat-icon>subject</mat-icon>
             </button>
             <span>{{albumName}}</span>
             <span class="example-spacer"></span>
@@ -29,6 +29,9 @@
             <router-outlet></router-outlet>
         </div>
         <div *ngIf="load" class="container-fluid">
+                <div *ngIf="message" class="content">
+                        <span class="alert alert-info">{{message}}</span>
+                </div>
             <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
         </div>
     </mat-sidenav-content>

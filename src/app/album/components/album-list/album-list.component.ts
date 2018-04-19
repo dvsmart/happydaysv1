@@ -31,7 +31,7 @@ export class AlbumListComponent implements OnInit {
   searchText: '';
   show: boolean = true;
 
-  loading:boolean;
+  loading: boolean;
 
   constructor(private router: Router, private albumService: AlbumService, public dialog: MatDialog, private media: ObservableMedia) {
     this.loadAll();
@@ -49,7 +49,7 @@ export class AlbumListComponent implements OnInit {
         this.show = true;
       }
     });
-    this.defaultImg = "../assets/images/download.png";
+    this.defaultImg = "http://res.cloudinary.com/vjcloud/image/upload/v1523976867/download_stt11z.png";
   }
 
 
@@ -60,9 +60,9 @@ export class AlbumListComponent implements OnInit {
   }
 
   deleteAlbum(album) {
-    this.loading = true;
     let dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
+      hasBackdrop:false,
       data: {
         message: 'Are you sure want to delete this Album? All the images would be removed from this Album',
         title: 'Delete Confirmation',
@@ -70,8 +70,9 @@ export class AlbumListComponent implements OnInit {
       }
     })
     dialogRef.afterClosed().subscribe((result) => {
+      this.loading = true;
       if (result === true) {
-        this.albumService.deleteAlbum(album.id).subscribe(x => { this.loadAll();this.loading  = false; });
+        this.albumService.deleteAlbum(album.id).subscribe(x => { this.loadAll(); this.loading = false; });
       }
     });
   }
@@ -79,14 +80,15 @@ export class AlbumListComponent implements OnInit {
 
   openDialog(): void {
     let dialogRef = this.dialog.open(AddAlbumDialogComponent, {
-      width: '250px',
-      data: { name: '' }
+      data: { name: '' },
+      hasBackdrop: true
     });
 
     dialogRef.afterClosed().subscribe(result => {
       this.loading = true;
-      if (result === undefined) return;
+      if (result === undefined) { this.loading = false; return; }
       if (this.albums.length > 15) {
+        this.loading = false;
         this.errorMessage = "Maximum limit exceeded. Please contact the administrator.";
         return;
       }
@@ -95,9 +97,10 @@ export class AlbumListComponent implements OnInit {
         this.albumName.setValue(albumName);
         this.albumModel.name = this.albumName.value;
         this.albumModel.isPublic = true;
-        this.albumService.createAlbum(this.albumModel).subscribe(x => { this.loadAll();this.loading = false; });
+        this.albumService.createAlbum(this.albumModel).subscribe(x => { this.loadAll(); this.loading = false; });
       } else {
         this.errorMessage = "Oops...looks like album name already exists. Please choose a different name";
+        this.loading = false;
       }
     });
   }
