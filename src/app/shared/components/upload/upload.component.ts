@@ -85,7 +85,6 @@ export class UploadComponent implements OnInit {
     this.loading = true;
     const formModel = this.prepareSave(this.form.value);
     this.photoService.postFile(formModel).subscribe(data => {
-      debugger;
       this.openSnackBar("Uploaded successfully");
       this.loading = false;
       this.clear();
