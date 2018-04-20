@@ -56,9 +56,10 @@ export class PhotoGalleryComponent implements OnInit {
       {
         breakpoint: 800,
         width: '100%',
-        height: '600px',
-        imagePercent: 80,
-        thumbnailsPercent: 20,
+        height: '400px',
+        thumbnailsColumns: 6,
+        thumbnailsRows: 3,
+        imagePercent: 100,
         thumbnailsMargin: 2,
         thumbnailMargin: 2
       },

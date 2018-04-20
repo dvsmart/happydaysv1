@@ -1,23 +1,28 @@
 <mat-sidenav-container class="example-container">
     <mat-sidenav #sidenav class="example-sidenav" [mode]="mode" fixedInViewport="false" [opened]="isOpened">
         <mat-nav-list>
-            <div class="text-center" style="margin-bottom: 15px;margin-top: 25px;">
+            <img style="position: relative;top: -8px;"
+            src="http://res.cloudinary.com/vjcloud/image/upload/c_fit,e_gamma:0,fl_animated,h_150,o_51,r_0,w_300/v1524235474/Application/60643682-photo-album-remembrance-and-nostalgia-in-summer-journey-trip-on-wood-table-instant-photo-of-vintage-.png">
+            <div class="text-center" style="position: absolute;top:35px;left: 70px;">
                 <button mat-icon-button (click)="sidenav.toggle()">
                     <mat-icon>close</mat-icon>
                 </button>
                 <h3>Albums</h3>
                 <mat-divider></mat-divider>
             </div>
-            <mat-list-item *ngFor="let album of albums" class="text-center">
-                <a matLine (click)="onSelect(album.id)" [routerLink]="['album',album.id]" routerLinkActive="active">{{ album.name }}</a>
-            </mat-list-item>
+            <div >
+                    <mat-list-item *ngFor="let album of albums" class="text-center">
+                            <a matLine (click)="onSelect(album.id)" [routerLink]="['album',album.id]" routerLinkActive="active">{{ album.name }}</a>
+                        </mat-list-item>
+            </div>
+            
         </mat-nav-list>
 
     </mat-sidenav>
     <mat-sidenav-content>
         <mat-toolbar color="accent">
-            <button mat-icon-button (click)="sidenav.toggle()">
-                <mat-icon>subject</mat-icon>
+            <button mat-icon-button (click)="sideToggle()">
+                <mat-icon>menu</mat-icon>
             </button>
             <span>{{albumName}}</span>
             <span class="example-spacer"></span>

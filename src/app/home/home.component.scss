@@ -64,6 +64,12 @@
     animation-iteration-count: 1;
 }
 
+#fancyjumper{
+    animation-duration: 4s;
+    animation-delay: 3s;
+    animation-iteration-count: infinite;
+}
+
 body {
     background-color: black !important;
 }
@@ -93,8 +99,7 @@ a:hover {
     font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     margin-bottom: 0;
     text-transform: uppercase;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.4392156862745098);
 }
 
 #mainNav .navbar-toggler {
@@ -105,11 +110,13 @@ a:hover {
 }
 
 #mainNav .navbar-brand {
-    font-weight: 700;
+    font-weight: 600;
 }
 
 #mainNav a {
     color: white;
+    line-height: 1.5rem;
+    letter-spacing: 0.2rem;
 }
 
 #mainNav .navbar-nav .nav-item {

@@ -27,13 +27,14 @@ export class GalleryComponent implements OnInit {
   isOpened: boolean = true;
   mode: string = 'side';
   @ViewChild('sidenav') sidenav: MatSidenav;
-  message:string;
+  message: string;
   watcher: Subscription;
+
   constructor(private albumService: AlbumService, private router: Router, private photoService: PhotoService, media: ObservableMedia, private activatedRoute: ActivatedRoute) {
     if (this.activatedRoute.snapshot.firstChild != null && this.activatedRoute.snapshot.firstChild.url[1].path != null && this.activatedRoute.snapshot.firstChild.url[1].path != undefined) {
       this.load = false;
       this.albumId = +this.activatedRoute.snapshot.firstChild.url[1].path;
-    }else{
+    } else {
       this.albumName = 'Photos';
       this.load = true;
     }
@@ -43,12 +44,16 @@ export class GalleryComponent implements OnInit {
         this.mode = 'push';
       }
     });
-    this.albumService.getAlbums().subscribe(x => { this.albums = x; if(this.albumId != null){ this.albumName = this.albums.find(x => x.id == this.albumId).name; }});
+    this.albumService.getAlbums().subscribe(x => { this.albums = x; if (this.albumId != null) { this.albumName = this.albums.find(x => x.id == this.albumId).name; } });
   }
 
   loadAllImages() {
     this.galleryImages = [];
-    this.photoService.getAllPhotos().subscribe(x => { if(x.length === 0){this.message = 'No Pictures found'};this.getGalleryImages(x); });
+    this.photoService.getAllPhotos().subscribe(x => { if (x.length === 0) { this.message = 'No Pictures found' }; this.getGalleryImages(x); });
+  }
+
+  sideToggle() {
+    this.sidenav.toggle();
   }
 
   getGalleryImages(photos) {
@@ -71,7 +76,7 @@ export class GalleryComponent implements OnInit {
   getAlbumName() {
     if (this.albumId !== null) {
       this.albumName = this.albums.find(x => x.id == this.albumId).name;
-    }else{
+    } else {
       this.albumName = 'Photos';
     }
   }
@@ -88,9 +93,30 @@ export class GalleryComponent implements OnInit {
     this.galleryOptions = [
       {
         width: '100%',
-        height: '650px',
+        height: '620px',
         thumbnailsColumns: columns ? columns : 5,
         thumbnailsRows: rows ? rows : 0,
+        imageAnimation: NgxGalleryAnimation.Zoom,
+        thumbnailsOrder: NgxGalleryOrder.Row,
+        imageDescription: others ? false : true,
+        imageSwipe: others ? false : true,
+        imageInfinityMove: others ? false : true,
+        imageArrows: others ? false : true,
+        imageArrowsAutoHide: others ? false : true,
+        previewAnimation: others ? false : true,
+        lazyLoading: true,
+        image: imageShow,
+        thumbnailsArrowsAutoHide: others ? false : true,
+        previewFullscreen: others ? false : true,
+        thumbnailMargin: 2,
+        thumbnailsMargin: 2,
+      },
+      {
+        breakpoint: 1920,
+        width: '100%',
+        height: '400px',
+        thumbnailsColumns: 10,
+        thumbnailsRows: 4,
         imageAnimation: NgxGalleryAnimation.Zoom,
         thumbnailsOrder: NgxGalleryOrder.Row,
         imageDescription: others ? false : true,
@@ -114,7 +140,7 @@ export class GalleryComponent implements OnInit {
         height: '400px',
         imageSwipe: true,
         thumbnailsColumns: 2,
-        thumbnailsRows:3,
+        thumbnailsRows: 3,
         thumbnails: true
       }
     ];

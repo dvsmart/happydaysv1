@@ -10,14 +10,14 @@
   display: flex;
   // align-items: center;
   justify-content: center;
-  width: 300px;
+  width: 265px;
   background: rgba(255, 0, 0, 0.5);
   height: auto;
 }
 
 .active{
   color: rgba(0, 0, 0, 0.87);
-  border-bottom:5px solid #00bcd4; 
+  border-bottom:1px solid #00bcd4; 
 }
 
 @media (max-width: 599px){
@@ -41,14 +41,40 @@
 }
 
 .mat-list-item a{
-  font-size: 24px;
+  font-size: 18px;
   padding: 10px;
-  letter-spacing: 0.3rem;
+  letter-spacing: 0.05rem;
 }
 
 
 h3{
   letter-spacing: 0.4rem;
+  color: white!important;
+  opacity: 2;
+}
+
+mat-divider{
+  color: white;
 }
 
 
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  left: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}

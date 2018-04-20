@@ -70,7 +70,7 @@ html{
 .cyan-dark-theme {
 
   .example-sidenav{
-    background-color: #00acc1!important;
+    background-color:rgba(50, 192, 210, 0.42) !important;
   }
 
   @include angular-material-theme($cyan-theme);
