@@ -3,7 +3,8 @@
 }
 
 .active {
-    background-color: rgba(219, 92, 92, 0.418) !important;
+    background:#00bcd4;
+    color: rgba(0, 0, 0, 0.87);
 }
 
 .fixed {
@@ -11,3 +12,13 @@
     z-index: 1;
     top: 0;
 }
+
+.mat-button:after {
+    display:block;
+    content: '';
+    border-bottom: solid 5px #00bcd4;  
+    transform: scaleX(0);  
+    transition: transform 250ms ease-in-out;
+  }
+  .mat-button:hover:after { transform: scaleX(1);}
+  .mat-button.fromLeft:after{  transform-origin:  0% 50%;}

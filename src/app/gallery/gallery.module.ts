@@ -7,6 +7,7 @@ import { PhotoGalleryComponent } from './photo-gallery/photo-gallery.component';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { PhotoService } from '../shared/services/photo.service';
 import { AlbumService } from '../album/service/album.service';
+import { Ng2ImgMaxModule } from 'ng2-img-max';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { AlbumService } from '../album/service/album.service';
     SharedModule,
     GalleryRouteModule,
     NgxGalleryModule,
+    Ng2ImgMaxModule
   ],
   providers:[PhotoService,AlbumService],
   declarations: [GalleryComponent,PhotoGalleryComponent]

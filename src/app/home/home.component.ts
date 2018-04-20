@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
       {
         width: '100%',
         height: '620px',
+        imageArrowsAutoHide:true,
         imageAnimation: NgxGalleryAnimation.Slide,
         thumbnails: false,
         preview: false,

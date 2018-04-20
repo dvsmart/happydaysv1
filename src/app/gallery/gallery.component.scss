@@ -15,7 +15,8 @@
 }
 
 .active{
-  color: black !important;
+  color: rgba(0, 0, 0, 0.87);
+  border-bottom:5px solid #00bcd4; 
 }
 
 @media (max-width: 599px){
@@ -39,5 +40,14 @@
 }
 
 .mat-list-item a{
-  font-size: 26px;
+  font-size: 24px;
+  padding: 10px;
+  letter-spacing: 0.3rem;
 }
+
+
+h3{
+  letter-spacing: 0.4rem;
+}
+
+

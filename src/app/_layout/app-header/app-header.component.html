@@ -6,9 +6,9 @@
     <span class="example-spacer"></span>
 
     <div *ngIf="!showMenu">
-      <button mat-button routerLink="/Home" routerLinkActive="active" class="animated fadeInDown">Home</button>
-      <button mat-button routerLink="/Albums" routerLinkActive="active" class="animated fadeInDown">Albums</button>
-      <button mat-button routerLink="/Gallery" routerLinkActive="active" class="animated fadeInDown">Gallery</button>
+      <button mat-button routerLink="/Home" routerLinkActive="active" class="animated fadeInDown fromLeft">Home</button>
+      <button mat-button routerLink="/Albums" routerLinkActive="active" class="animated fadeInDown fromLeft">Albums</button>
+      <button mat-button routerLink="/Gallery" routerLinkActive="active" class="animated fadeInDown fromLeft">Gallery</button>
       <button mat-button [matMenuTriggerFor]="menu" class="animated fadeInRight">{{currentUser}}<mat-icon>face</mat-icon></button>
       <mat-menu #menu="matMenu" overlapTrigger="false" yPosition="below">
         <button mat-menu-item routerLink="/Profile">Profile</button>

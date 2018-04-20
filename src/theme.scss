@@ -22,14 +22,48 @@ $dark-warn:    mat-palette($mat-deep-orange);
 $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
 $side-background: mat-palette($mat-teal,100);
-// Include the alternative theme styles inside of a block with a CSS class. You can make this
-// CSS class whatever you want. In this example, any component inside of an element with
-// `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
+
+
+// body{
+//   background-color: #E0F2F1!important;
+//   line-height: 1!important;
+//   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif!important;
+// }
+
+
 .unicorn-dark-theme {
 
   .example-sidenav{
     background-color: #B2DFDB!important;
   }
 
+  
+
+
   @include angular-material-theme($dark-theme);
+}
+
+
+// Define an alternate dark theme.
+$cyan-primary: mat-palette($mat-cyan,600,300,200);
+$cyan-accent:  mat-palette($mat-cyan, 500, 400, 200);
+$cyan-warn:    mat-palette($mat-deep-orange);
+$cyan-theme:   mat-light-theme($cyan-primary, $cyan-accent, $cyan-warn);
+
+$side-background: mat-palette($mat-cyan,100);
+
+
+body{
+  background-color: #e5ffff!important;
+  line-height: 1!important;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif!important;
+}
+
+.cyan-dark-theme {
+
+  .example-sidenav{
+    background-color: #00acc1!important;
+  }
+
+  @include angular-material-theme($cyan-theme);
 }
