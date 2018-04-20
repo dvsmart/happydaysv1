@@ -47,13 +47,13 @@
       <mat-grid-list [cols]="cols | async" rowHeight="380px;">
         <mat-grid-tile *ngFor="let album of albums | searchByName: searchText">
           <mat-card class="example-card mat-elevation-z4 animated zoomIn">
-            <mat-card-header>
+            <div mat-card-header class="albumTitle">
               <mat-card-title>{{album.name}}</mat-card-title>
               <mat-card-subtitle>
                 <b>{{album.createdBy}}</b> |
                 <i>{{album.addedOn | date}}</i>
               </mat-card-subtitle>
-            </mat-card-header>
+            </div>
             <img mat-card-image *ngIf="album.coverImage != undefined" [src]="album.coverImage" [alt]="album.name" />
             <img mat-card-image *ngIf="album.coverImage == undefined" [src]="defaultImg" alt="NoImage">
             <div mat-card-avatar class="material-icons mat-o-icon">photo_album</div>

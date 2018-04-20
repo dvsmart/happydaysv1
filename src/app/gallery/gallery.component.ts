@@ -80,6 +80,7 @@ export class GalleryComponent implements OnInit {
     this.load = false;
     this.albumId = id;
     this.getAlbumName();
+    this.sidenav.toggle();
   }
 
   configGalleryOptions(imageShow?: boolean, others?: boolean, columns?: number, rows?: number) {
@@ -110,8 +111,10 @@ export class GalleryComponent implements OnInit {
         breakpoint: 559,
         preview: true,
         width: '100%',
+        height: '400px',
         imageSwipe: true,
         thumbnailsColumns: 2,
+        thumbnailsRows:3,
         thumbnails: true
       }
     ];

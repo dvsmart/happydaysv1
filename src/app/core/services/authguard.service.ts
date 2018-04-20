@@ -5,15 +5,14 @@ import { CookieService } from 'ngx-cookie-service';
 @Injectable()
 export class AuthguardService {
 
-  constructor(private router: Router,private storage: CookieService) { }
+    constructor(private router: Router, private storage: CookieService) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         if (this.storage.get('user') != null && this.storage.get('user') !== "undefined" && this.storage.get('user') !== "") {
             return true;
-        }else{
-            this.router.navigate(["/login"], { queryParams: { returnUrl: state.url }});
-            return false;
         }
+        this.router.navigate(["/login"], { queryParams: { returnUrl: state.url } });
+        return false;
     }
 
 }

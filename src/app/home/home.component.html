@@ -1,52 +1,73 @@
-<ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
-<div class="container">
-  <!-- Example row of columns -->
-  <div class="row">
-    <div class="col-md-4 card-section animated fadeInLeft" id="albumcard">
-      <mat-card color="primary">
-        <mat-card-title>
-            <div mat-card-avatar class="material-icons">photo_library</div>
-          Albums
-        </mat-card-title>
-        <mat-card-content>
-            <p>Create your own albums, share your happiness!!!
-                </p>
-        </mat-card-content>
-        <mat-card-actions class="mobile-center">
-            <button mat-raised-button color="accent" routerLink="/Albums">View</button>
-        </mat-card-actions>
-      </mat-card>
+<script>
+    (function ($) {
+        "use strict"; // Start of use strict
+        // Closes responsive menu when a scroll trigger link is clicked
+        $('.js-scroll-trigger').click(function () {
+            $('.navbar-collapse').collapse('hide');
+        });
+
+        // Activate scrollspy to add active class to navbar items on scroll
+        $('body').scrollspy({
+            target: '#mainNav',
+            offset: 54
+        });
+
+        // Collapse Navbar
+        var navbarCollapse = function () {
+            if ($("#mainNav").offset().top > 100) {
+                $("#mainNav").addClass("navbar-shrink");
+            } else {
+                $("#mainNav").removeClass("navbar-shrink");
+            }
+        };
+        // Collapse now if page is not at top
+        navbarCollapse();
+        // Collapse the navbar when page is scrolled
+        $(window).scroll(navbarCollapse);
+
+    })(jQuery);
+</script>
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container text-center">
+        <a class="navbar-brand js-scroll-trigger visible-xs" href="#page-top">Happy Days</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link animated fadeInDown link1" routerLink="/Albums">Albums</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link animated fadeInDown link2" routerLink="/Gallery">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link animated fadeInDown link3" routerLink="/Profile">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link animated fadeInRight link4" routerLink="/login">Logout</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="col-md-4 card-section animated fadeInUp" id="photocard">
-        <mat-card>
-            <mat-card-title>
-                <div mat-card-avatar class="material-icons">photo_album</div>
-              Gallery
-            </mat-card-title>
-            <mat-card-content>
-                <p><i>"Live life", take pictures, relieve Memories...repeat!</i>
-                    </p>
-            </mat-card-content>
-            <mat-card-actions class="mobile-center">
-                <button mat-raised-button color="accent" routerLink="/Gallery">View</button>
-            </mat-card-actions>
-          </mat-card>
+</nav>
+<header class="masthead">
+    <div class="intro-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h1 class="brand-heading animated slideInDown">...Friends...</h1>
+                    <p class="intro-text animated slideInUp">Best friends forever
+                        <br>Live life, Capture your greatest moments,
+                        <br>Share your happiness...</p>
+                    <a href="#about" class="btn btn-circle animated bounce">
+                        <i class="fa fa-angle-double-down "></i>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4 card-section animated fadeInRight" id="aboutmecard">
-        <mat-card>
-            <mat-card-title>
-                <div mat-card-avatar class="material-icons">photo_album</div>
-              About
-            </mat-card-title>
-            <mat-card-content>
-                <p>Edit your profile <mat-icon>mode_edit</mat-icon>
-                </p>
-            </mat-card-content>
-            <mat-card-actions class="mobile-center">
-                <button mat-raised-button color="accent" routerLink="/Profile">View</button>
-            </mat-card-actions>
-          </mat-card>
-    </div>
-  </div>
-  <hr>
-</div>
+</header>

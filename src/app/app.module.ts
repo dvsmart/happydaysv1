@@ -16,6 +16,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { CommonModule } from '@angular/common';
 import { HomeService } from './home/home.service';
+import { HomeLayoutComponent } from './_layout/home-layout/home-layout.component';
 
 
 
@@ -24,6 +25,7 @@ import { HomeService } from './home/home.service';
     AppComponent,
     AppHeaderComponent,
     AppLayoutComponent,
+    HomeLayoutComponent,
     HomeComponent
   ],
   imports: [

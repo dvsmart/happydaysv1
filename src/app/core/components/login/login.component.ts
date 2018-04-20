@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.form.value)
       .subscribe(data => {
         this.loading = false;
-        this.router.navigate(['/']);
+        this.router.navigateByUrl(this.returnUrl);
       },
         errorResponse => {
           this.errorMessage = errorResponse.error.error_description;
