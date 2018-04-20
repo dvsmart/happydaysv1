@@ -65,3 +65,7 @@
     background: url(./assets/images/loading.gif) center center no-repeat; 
     background-color: aqua;
   }
+
+  span, .mat-menu-item{
+    outline: 0;
+  }

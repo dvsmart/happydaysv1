@@ -88,7 +88,7 @@ export class GalleryComponent implements OnInit {
     this.galleryOptions = [
       {
         width: '100%',
-        height: '770px',
+        height: '650px',
         thumbnailsColumns: columns ? columns : 5,
         thumbnailsRows: rows ? rows : 0,
         imageAnimation: NgxGalleryAnimation.Zoom,
